@@ -15,6 +15,9 @@ namespace larlite {
     //
     std::cout << "I am being initialized\n" << event_counter;
 
+    event_counter = 0;
+    muon_E = new TH1D("muon_energy", "x;y;tile", 1000,0, 1e4);
+
     return true;
   }
   
@@ -37,10 +40,25 @@ namespace larlite {
     //   std::cout << "Event ID: " << my_pmtfifo_v->event_id() << std::endl;
     //
 
-    std::cout << "I am being called\n"<< event_counter;
+    // std::cout << "I am being called\n"<< event_counter;
     event_counter++;
 
     
+    auto event_mctracks = storage->get_data<event_mctrack>("mcreco");
+    
+    // std::cout << "I see" <<event_mctracks->size() << "in this event ";
+
+    for(int i = 0; i <event_mctracks->size(); i++){
+      auto track = event_mctracks->at(i);
+
+      if (track.PdgCode() != 11) continue;
+
+      // std::cout<< "On track " << i << "and particle type is " << track.PdgCode() << "\n";
+      
+      double muon_energy =  track.Start().E();
+      muon_E->Fill(muon_energy);
+
+    }
   
     return true;
   }
@@ -61,6 +79,8 @@ namespace larlite {
     //
 
     std::cout << "I am being finalized\n";
+    
+    muon_E->Write();
   
     return true;
   }

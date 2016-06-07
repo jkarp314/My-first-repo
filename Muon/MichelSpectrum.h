@@ -17,6 +17,9 @@
 
 #include "Analysis/ana_base.h"
 
+#include "DataFormat/mctrack.h"
+#include "TH1D.h"
+
 namespace larlite {
   /**
      \class MichelSpectrum
@@ -51,6 +54,7 @@ namespace larlite {
 
   private:
     int event_counter;
+    TH1D* muon_E;
     
   };
 }

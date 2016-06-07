@@ -39,54 +39,8 @@ namespace std {} using namespace std;
 
 // Header files passed as explicit arguments
 #include "MichelSpectrum.h"
-#include "sample.h"
 
 // Header files passed via #pragma extra_include
-
-namespace ROOT {
-   static TClass *sample_Dictionary();
-   static void sample_TClassManip(TClass*);
-   static void *new_sample(void *p = 0);
-   static void *newArray_sample(Long_t size, void *p);
-   static void delete_sample(void *p);
-   static void deleteArray_sample(void *p);
-   static void destruct_sample(void *p);
-
-   // Function generating the singleton type initializer
-   static TGenericClassInfo *GenerateInitInstanceLocal(const ::sample*)
-   {
-      ::sample *ptr = 0;
-      static ::TVirtualIsAProxy* isa_proxy = new ::TIsAProxy(typeid(::sample));
-      static ::ROOT::TGenericClassInfo 
-         instance("sample", "sample.h", 22,
-                  typeid(::sample), ::ROOT::Internal::DefineBehavior(ptr, ptr),
-                  &sample_Dictionary, isa_proxy, 4,
-                  sizeof(::sample) );
-      instance.SetNew(&new_sample);
-      instance.SetNewArray(&newArray_sample);
-      instance.SetDelete(&delete_sample);
-      instance.SetDeleteArray(&deleteArray_sample);
-      instance.SetDestructor(&destruct_sample);
-      return &instance;
-   }
-   TGenericClassInfo *GenerateInitInstance(const ::sample*)
-   {
-      return GenerateInitInstanceLocal((::sample*)0);
-   }
-   // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_(Init) = GenerateInitInstanceLocal((const ::sample*)0x0); R__UseDummy(_R__UNIQUE_(Init));
-
-   // Dictionary for non-ClassDef classes
-   static TClass *sample_Dictionary() {
-      TClass* theClass =::ROOT::GenerateInitInstanceLocal((const ::sample*)0x0)->GetClass();
-      sample_TClassManip(theClass);
-   return theClass;
-   }
-
-   static void sample_TClassManip(TClass* ){
-   }
-
-} // end of namespace ROOT
 
 namespace ROOT {
    static TClass *larlitecLcLMichelSpectrum_Dictionary();
@@ -103,7 +57,7 @@ namespace ROOT {
       ::larlite::MichelSpectrum *ptr = 0;
       static ::TVirtualIsAProxy* isa_proxy = new ::TIsAProxy(typeid(::larlite::MichelSpectrum));
       static ::ROOT::TGenericClassInfo 
-         instance("larlite::MichelSpectrum", "MichelSpectrum.h", 25,
+         instance("larlite::MichelSpectrum", "MichelSpectrum.h", 28,
                   typeid(::larlite::MichelSpectrum), ::ROOT::Internal::DefineBehavior(ptr, ptr),
                   &larlitecLcLMichelSpectrum_Dictionary, isa_proxy, 4,
                   sizeof(::larlite::MichelSpectrum) );
@@ -135,27 +89,6 @@ namespace ROOT {
 
 namespace ROOT {
    // Wrappers around operator new
-   static void *new_sample(void *p) {
-      return  p ? new(p) ::sample : new ::sample;
-   }
-   static void *newArray_sample(Long_t nElements, void *p) {
-      return p ? new(p) ::sample[nElements] : new ::sample[nElements];
-   }
-   // Wrapper around operator delete
-   static void delete_sample(void *p) {
-      delete ((::sample*)p);
-   }
-   static void deleteArray_sample(void *p) {
-      delete [] ((::sample*)p);
-   }
-   static void destruct_sample(void *p) {
-      typedef ::sample current_t;
-      ((current_t*)p)->~current_t();
-   }
-} // end of namespace ROOT for class ::sample
-
-namespace ROOT {
-   // Wrappers around operator new
    static void *new_larlitecLcLMichelSpectrum(void *p) {
       return  p ? ::new((::ROOT::Internal::TOperatorNewHelper*)p) ::larlite::MichelSpectrum : new ::larlite::MichelSpectrum;
    }
@@ -179,7 +112,6 @@ namespace {
   void TriggerDictionaryInitialization_libMyFirstRepo_Muon_Impl() {
     static const char* headers[] = {
 "MichelSpectrum.h",
-"sample.h",
 0
     };
     static const char* includePaths[] = {
@@ -194,7 +126,6 @@ namespace {
 #pragma clang diagnostic ignored "-Wignored-attributes"
 #pragma clang diagnostic ignored "-Wreturn-type-c-linkage"
 extern int __Cling_Autoloading_Map;
-class __attribute__((annotate("$clingAutoload$sample.h")))  sample;
 namespace larlite{class __attribute__((annotate("$clingAutoload$MichelSpectrum.h")))  MichelSpectrum;}
 )DICTFWDDCLS";
     static const char* payloadCode = R"DICTPAYLOAD(
@@ -206,13 +137,11 @@ namespace larlite{class __attribute__((annotate("$clingAutoload$MichelSpectrum.h
 
 #define _BACKWARD_BACKWARD_WARNING_H
 #include "MichelSpectrum.h"
-#include "sample.h"
 
 #undef  _BACKWARD_BACKWARD_WARNING_H
 )DICTPAYLOAD";
     static const char* classesHeaders[]={
 "larlite::MichelSpectrum", payloadCode, "@",
-"sample", payloadCode, "@",
 nullptr};
 
     static bool isInitialized = false;
